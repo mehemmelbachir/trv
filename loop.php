@@ -35,9 +35,16 @@
 <?php else: ?>
 
 	<!-- article -->
-	<article>
-		<h2><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h2>
-	</article>
+	<!--<article>
+		<h2>
+			Page en construction!
+		</h2>
+	</article> -->
 	<!-- /article -->
+
+	<div class="no-content">
+		<h2>Page en construction</h2>
+	</div>
+
 
 <?php endif; ?>

@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 
 	<main role="main">
+		<h1>this is category page</h1>
 		<!-- section -->
 		<section>
 
