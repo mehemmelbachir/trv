@@ -1,9 +1,91 @@
 
 
 .index-section{
+	position: relative;
 	background: #e6e6e6;
-    display: flex;
+/*    display: flex;
     justify-content: center;
-    align-items: center;
-
+    align-items: center;  */
 }
+
+
+#section-01{
+	background: url('../img/background_03.jpg') no-repeat center center;
+	background-size: cover;
+}
+
+#section-02{
+	background: url('../img/background_05.jpg') no-repeat center center;
+	background-size: cover;
+}
+
+#section-03{
+	background: url('../img/background_01.jpg') no-repeat center center;
+	background-size: cover;
+}
+
+
+
+.fixed-layer{
+	font-size: 5em;
+	padding:10px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	text-shadow: 2px 2px 2px #AAA;
+}
+
+
+
+.pagination{
+	z-index: 99;
+	position: fixed;
+	right:0;
+	top: 50%;
+/*	transform: translateY(-50%);
+	transform: perspective(1000px) rotateY(-80deg);
+	transition: transform 0.5s ease;*/
+}
+
+
+.pagination:hover{
+	transform: perspective(1000px) rotateY(0deg);
+}
+
+
+.pagination:before{
+	position: relative;
+	height: 100%;
+	width: 20px;
+	background: #ff0000;
+}
+
+
+#main-logo{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	width: 320px;
+	height: 70px;
+	z-index: 99;
+	transition: all 0.5s ease-in-out;
+}
+/*
+#main-logo{
+	transform: scale(1);
+	transition: all 0.5s ease-in-out;
+}
+*/
+/*
+.to-top{
+	top: 20px;
+	transition: all 1.5s ease-in-out;
+}
+*/
+/*
+.to-top img{
+	transform: scale(0.75);
+}
+*/

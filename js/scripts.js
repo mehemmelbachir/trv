@@ -15,14 +15,30 @@
 		    parallax();
 		});
 		
+		
 		$.scrollify({
 			section : ".index-section",
 			interstitialSection : ".footer",
 		});
 
+		$.scrollify.next();
+
+		new WOW().init();
+
+		function goto_section(id){
+			var target = "#section-"+id;
+			console.log(target);
+		/*	$.scrollify.move("#2");  */
+			$.scrollify.next();
+		}
+
 	});
 	
 })(jQuery, this);
+
+
+
+
 
 
 /* Open when someone clicks on the span element */

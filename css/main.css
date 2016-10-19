@@ -2,6 +2,7 @@
 
 
 .container-fluid{
+  position: relative;
   margin: 0; padding:0;
 }
 
@@ -64,7 +65,7 @@
     height: 100%;
     width: 0;
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 99999; /* Sit on top */
     left: 0;
     top: 0;
     background-color: rgb(0,0,0); /* Black fallback color */
@@ -118,6 +119,37 @@
 
 .menu{
 	position: fixed;
+  z-index: 99;
 	top: 10px;
 	left: 10px;
+  opacity: 0.3;
+  transition: opacity 1s ease;
+}
+
+.menu:hover{
+  opacity: 1;
+}
+
+
+.lines-0, .lines-25, .lines-50, .lines-75, .lines-100 {
+  position: absolute;
+  top: 0;
+  width:1px;
+  height: 100%;
+  border-left: dotted 1px #AAA;
+}
+.lines-0{
+  left: 0%;
+}
+.lines-25{
+  left: 25%;
+}
+.lines-50{
+  left: 50%;
+}
+.lines-75{
+  left: 75%;
+}
+.lines-100{
+  left: 100%;
 }

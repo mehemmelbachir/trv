@@ -22,7 +22,7 @@
 				integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" 
 				crossorigin="anonymous">
 
-
+		<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/animate.css">
 
 		<?php wp_head(); ?>
 		<script>
@@ -43,7 +43,7 @@
 					section : ".index-section",
 				});
 			});
-*/
+		*/
 		</script>
 
 
@@ -84,6 +84,10 @@
 					    <!-- Overlay content -->
 					    <div class="overlay-content">
 					  	    <?php html5blank_nav(); ?>
+
+					  	    <div>
+					  	    	<p style="color:#FFF">Social content</p>
+					  	    </div>	
 					    </div>
 					</div>
 
@@ -94,6 +98,12 @@
 						<a href="#" data-toggle="tooltip"
        								 data-placement="right" title="Menu">
 							<img src="<?php echo get_template_directory_uri(); ?>/img/menu.png" >
+
+							<!--
+							<img src="<?php echo get_template_directory_uri(); ?>/img/logo_305x50_2.png" height="30px">
+							-->
+
+
 						</a>
 					</div>
 					
@@ -125,4 +135,4 @@
 		
 
 		<!-- Container -->
-		<div class="container-fluid">
+		<div class="container-fluid">	
