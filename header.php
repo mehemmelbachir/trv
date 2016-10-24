@@ -65,22 +65,17 @@
 					<?php if(!is_home()){  ?>
 					<!-- logo -->
 					<div class="bg"></div>
-					<div class="jumbotron text-center pagination-centered">
-						<!-- TODO: Insert company logo -->
-						
+					<div class="jumbotron text-center pagination-centered">					
 						<div style="display: table; margin: 0 auto;">
 							<img src="<?php echo get_template_directory_uri();?>/img/logo_305x50_2.png">
-					  		<!-- <p class="lead">Une entreprise digne de votre confiance</p>  -->
 					  	</div>			
 					</div>
 					<!-- /logo -->
 
 					<?php }; ?>
 
-					<div id="myNav" class="overlay">
-					    <!-- Button to close the overlay navigation -->
-					    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
+					<div id="myNav" class="overlay" isOpen="false">
 					    <!-- Overlay content -->
 					    <div class="overlay-content">
 					  	    <?php html5blank_nav(); ?>
@@ -92,37 +87,24 @@
 					</div>
 
 
-
-					<!-- Use any element to open/show the overlay navigation menu -->
-					<div class="menu" onclick="openNav()">
-						<a href="#" data-toggle="tooltip"
-       								 data-placement="right" title="Menu">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/menu.png" >
-
-							<!--
-							<img src="<?php echo get_template_directory_uri(); ?>/img/logo_305x50_2.png" height="30px">
-							-->
-
-
-						</a>
+					<div class="topbar hidden">
+						<span>MENU</span>
 					</div>
 					
 
+					<!-- Use any element to open/show the overlay navigation menu -->
+					<div class="menu" onclick="toggleNav()"> 						
+						<button class="lines-button x" id="menu-btn"
+								type="button" 
+								role="button" 
+								aria-label="Toggle Navigation">
+							<span class="lines"></span>
+						</button>
+					</div>  
+
+					
 
 
-
-					<!-- nav -->
-					<!--
-					<nav class="nav" role="navigation">
-						<?php if(!is_home()){
-							html5blank_nav();
-						}else{
-							// Display only on home page
-							echo '<h1>TRAVOCOVIA</h1>';
-						}; ?>
-					</nav>
-					-->
-					<!-- /nav -->
 
 				
 
