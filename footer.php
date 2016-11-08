@@ -4,9 +4,19 @@
 		<!-- /Container -->
 
 
-
+		<?php if(!is_home()){ ?>
+		
 		<!-- footer -->
 		<footer class="footer" role="contentinfo">
+
+		<?php }else{  ?>
+
+		<!-- INDEX FOOTER -->
+		<footer class="footer-index" role="contentinfo">
+
+		<?php } ?>
+
+
 			<div style="float:left;">
 				<!-- copyright -->
 				<p class="copyright">
@@ -20,6 +30,12 @@
 			<div style="clear: both;"></div>
 		</footer>
 		<!-- /footer -->
+		
+
+
+
+		
+
 
 		<?php wp_footer(); ?>
 

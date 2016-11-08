@@ -1,3 +1,4 @@
+
 (function ($, root, undefined) {
 	
 	$(function () {
@@ -11,14 +12,35 @@
 		    $('.bg').css('height', (jumboHeight-scrolled) + 'px');
 		}
 
+		// Fixe internal menu whene scroll reach it.
+		var internal_menu_y = 0
+		if ($('#interne-menu').length > 0){
+			internal_menu_y = $('#interne-menu').offset().top;
+		}	
+		
+
 		$(window).scroll(function(e){
 		    parallax();
+	
+		    // Fixing internal menu header
+		    if($(window).scrollTop() >= internal_menu_y - 50){
+		    	$("#interne-menu").addClass('fixed');
+		    } else {
+		    	$('#interne-menu').removeClass('fixed');
+		    }
 		});
 		
 			
 
 		new WOW().init();
 
+
+		// Removing link from current page item
+		$('.current-menu-item a').removeAttr( 'href' );
+
+
+		
+		
 
 	});
 	
@@ -31,7 +53,6 @@
 
 /* Open when someone clicks on the span element */
 function openNav() {
-/*    document.getElementById("myNav").style.width = "50%";*/
 	var overlay = document.getElementById("myNav");
 	$(overlay).addClass("opened");
 	$(overlay).attr("isopen",true);
@@ -58,12 +79,8 @@ function toggleNav(){
 }
 
 
-function more(){
-/*	$(".pagination").css('transform':'rotateY(90deg)');*/
-	var currentTransform = $('.pagination').css("transform : rotateY");
-	console.log(currentTransform);
-}
+// Close the navigation whene clic outside
 
-function less(){
-	alert("less");
-}
+
+
+

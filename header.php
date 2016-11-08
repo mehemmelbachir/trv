@@ -36,15 +36,6 @@
 
 
 
-        <script>
-        /*
-			$(function() {
-				$.scrollify({
-					section : ".index-section",
-				});
-			});
-		*/
-		</script>
 
 
 
@@ -64,13 +55,17 @@
 
 					<?php if(!is_home()){  ?>
 					<!-- logo -->
-					<div class="bg"></div>
-					<div class="jumbotron text-center pagination-centered">					
+					<div class="bg" style="background: url('<?php echo get_template_directory_uri(); ?>/img/header_01.jpg') no-repeat center center; background-size: cover;"></div>
+					<div class="jumbotron text-center pagination-centered" id="jumberton">					
 						<div style="display: table; margin: 0 auto;">
-							<img src="<?php echo get_template_directory_uri();?>/img/logo_305x50_2.png">
-					  	</div>			
+							<img src="<?php echo get_template_directory_uri();?>/img/logo_305x50_2.png" width="200px">
+					  	</div>		
+					  	<h1><?php single_cat_title(); ?></h1>
+					  	<?php echo category_description( $category_id ); ?>	
 					</div>
 					<!-- /logo -->
+
+
 
 					<?php }; ?>
 
@@ -78,17 +73,30 @@
 					<div id="myNav" class="overlay" isOpen="false">
 					    <!-- Overlay content -->
 					    <div class="overlay-content">
-					  	    <?php html5blank_nav(); ?>
+					    	<?php //get_search_form(); ?>	
 
-					  	    <div>
-					  	    	<p style="color:#FFF">Social content</p>
-					  	    </div>	
+					  	    <?php html5blank_nav(); ?>	
 					    </div>
+
 					</div>
 
 
 					<div class="topbar hidden">
 						<span>MENU</span>
+						<?php if(!is_home()){ ?>
+						<div id="first_line" class="row">
+							
+								<img 
+								src="<?php echo get_template_directory_uri();?>/img/logo_160px.png"
+								 alt="Travocovia logo"
+								 width="160px"
+								 style="float: right;">
+							
+							
+								<p><?php single_cat_title();?></p>
+													
+						</div>
+						<?php  }; ?>
 					</div>
 					
 

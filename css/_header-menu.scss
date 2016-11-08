@@ -1,0 +1,122 @@
+
+/* The Overlay (background) */
+.overlay {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */    
+    height: 100%;
+    width : 100%;
+    margin-left: -100%;
+    position: fixed; /* Stay in place */
+    z-index: 10; /* Sit on top */
+    left: 0;
+    top: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: .5s ease; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+
+
+
+    &:before{
+        position : absolute;
+        content: '';
+        top: 0 ; right : 0;
+        width : 100% ; height : 100%;
+        background-color: #fff;
+        opacity: 0.9;
+        filter: blur(100%);
+    }
+
+    @media screen and (min-width : 600px){
+        width : 50%;
+    }
+}
+
+
+/* Position the content inside the overlay */
+.overlay-content {
+    position: relative;
+    margin-top: 70px;
+    width: 100%; /* 100% width */
+    text-align: left;
+
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+
+    align-items: center;
+
+
+
+    ul{
+        position: absolute;
+        left: 300px;
+        top: 0;
+        opacity: .3;
+        transition: all 1s ease;
+
+        list-style : none;
+        //font-family : 'Oswald' , sans-serif;
+        font-family: 'Unica One', sans-serif;
+        li {
+            padding: 10px;
+            text-decoration: none;
+            text-transform : uppercase;
+            font-size: 2.5em;
+            @media screen and (max-width: 780px){
+                font-size: 1.8em;
+                padding: 5px;
+            }
+            display: block;            
+            a {
+                color: #818181;
+                transition: 0.3s;
+                &:hover , &:focus{
+                    color: #000;
+                }    
+                &:active {
+                    color: yellow;
+                }
+            }
+        }
+    }
+}
+
+.current-menu-item{
+    position: relative;
+    pointer-event : none;
+    cursor: default;
+    &:after{
+        position: absolute;
+        content: '';
+        left: -15px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 10px; width:10px;
+        background-color: #000;
+        border-radius: 50%;
+    }
+}
+
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+@media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
+
+
+
+.opened{
+    margin-left: 0;
+
+    ul{
+        left: 0;
+        opacity: 1;    
+    }
+}

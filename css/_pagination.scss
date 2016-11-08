@@ -1,77 +1,107 @@
-@import url('https://fonts.googleapis.com/css?family=Teko');
+@import url('https://fonts.googleapis.com/css?family=Teko'); 
 
 $top-position : 50%;
-$right-position : 50%;
+$right-position : 0%;
+$z-index : 99;
+$element-width: 150px;
+$element-height: 60px;
+$element-color : #222;
+$element-border-color : #eee;
+$element-opacity: 0.9;
+$element-text-color: #FFF;
 
-.pagination{
-	font-family: 'Teko', sans-serif;
-	z-index: 99;
+
+#pagination_container{
 	position: fixed;
-	height : 50px;
-	right: $right-position;
+	right:  - (($element-width / 2) + 10px); 
 	top: $top-position;
-	font-size: 2em;
-	list-style: none;
-	text-align: right;
-	-webkit-transform-style: preserve-3d;
-	-webkit-transition: -webkit-transform .5s; 
-	transform : translateZ(-25px);
-	perspective: 600;
-	animation: rotateCube;
-	li {
-		position: absolute;
-		-webkit-backface-visibility: hidden; 
-	/*	border:solid 1px #000;*/
-		overflow:hidden;
-		width:100px;
-	   	height:50px;
-	   	background: #ffab00;
-	   	opacity:1;
-		margin: 0px;
-		padding: 5px;
-		&:nth-child(1){ /*.. Face ..*/
-			-webkit-transform: translateZ( 25px );
+	z-index: $z-index;
+	cursor: pointer;
+	transition : all .3s;
+	transform : rotateZ(45deg) translateY(-50%) translateX(0); 
+	transform-origin: 100% 100% 0%;
+
+	*{
+		display: block;
+	}
+
+	.pagination_nav{
+		opacity : 0;
+		width: $element-width;
+		height : 20px;
+		text-align: center;
+		transition: opacity 0.3s;
+		img{
+			margin: auto;
 		}
-		&:nth-child(3){ /*.. Back ..*/
-			-webkit-transform: rotateX(-180deg) translateZ( -25px );
-		}
-		&:nth-child(4){ /*.. Top ..*/
-			 -webkit-transform: rotateX(90deg) translateZ( 25px );
-		}
-		&:nth-child(2){ /*.. Bottom ..*/
-			 -webkit-transform: rotateX(-90deg) translateZ( 25px );
+	}
+
+	&:hover{
+		transform: rotateZ(0) translateY(-50%);
+		right: 0;
+		.pagination_nav{
+			opacity : .8;
 		}
 	}	
 }
 
 
-/*animation css*/
-@-webkit-keyframes rotateCube {
-	0% { 
-		-webkit-transform: translateZ( -25px ) rotateX( 0deg ) rotateY( 0deg );
-	}
-	25% {
-		-webkit-transform: translateZ( -25px ) rotateX( -90deg ) rotateY( 0deg );	
-	}
-	50% {
-		-webkit-transform: translateZ( -25px ) rotateX( -180deg ) rotateY( 0deg );
-	}
-	100% {
-		-webkit-transform: translateZ( -25px ) rotateX( 90deg ) rotateY( 0deg );
+
+
+.wrap {
+	position: relative;
+	perspective: 800px;
+	perspective-origin: 50% 50%;
+	height: $element-height;
+	width: $element-width;
+
+	.cube{
+		position: relative;
+		height: inherit;
+		width: inherit;
+		font-family: 'Teko', sans-serif;
+		font-size: 2em;
+		list-style: none;
+		text-align: right;
+		transform-style: preserve-3d;
+		transform: translateZ(-($element-width / 2));
+		transform-origine: 50% 50%;
+		transition: transform .5s;
+		div{
+			position: absolute;
+			width: $element-width;
+			height: $element-height;
+			background:  $element-color;
+			border: solid 1px $element-border-color;
+			opacity: $element-opacity;
+			padding-right: 20px;
+			line-height: $element-height;
+			text-transform: uppercase;
+
+			&.back {
+				transform: translateZ(-($element-height / 2)) rotateX(180deg); // rotateY(180deg);
+				*{
+					transform: rotateX(-180deg);
+				}
+			}
+			&.top {
+				transform: rotateX(90deg) translateY(-($element-height / 2));
+			 	transform-origin: top center;
+			}
+			&.bottom {
+				transform: rotateX(-90deg) translateY(($element-height / 2));
+			 	transform-origin: bottom center;
+			}
+			&.front {
+				transform: translateZ(($element-height / 2));
+			}
+
+			a {
+				color: $element-text-color;
+			}
+
+		}
 	}
 }
 
 
-.pagination_nav{
-	position:fixed;
-	right: $right-position;
-	background: #ff0000;
-	&:first-child{
-		/*top: $top-position - 50px;	*/
-	}
-	&:last-child{
-		/*top: $top-position + 50px;*/
-	}
-	
-
-}

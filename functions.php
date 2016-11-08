@@ -107,9 +107,11 @@ function html5blank_header_scripts()
         wp_register_script('Scrollify', get_template_directory_uri() . '/js/Scrollify/jquery.scrollify.min.js', array(), '1.0.0'); // Scrollify
         wp_enqueue_script('Scrollify'); // Enqueue it!
 
-        wp_register_script('WOW', get_template_directory_uri() . '/js/WOW/wow.min.js', array(), '1.0.0'); // Scrollify
+        wp_register_script('WOW', get_template_directory_uri() . '/js/WOW/wow.min.js', array(), '1.0.0'); // WOW
         wp_enqueue_script('WOW'); // Enqueue it!
 
+        wp_register_script('countUp', get_template_directory_uri() . '/js/bower_components/countUp.js/dist/countUp.js', array(), '1.0.0'); // CountUp
+        wp_enqueue_script('countUp'); // Enqueue it!
 
     }
 }

@@ -1,0 +1,32 @@
+
+$header-height : 350px;
+
+
+.bg {
+//  background: url('img/header_01.jpg') no-repeat center center;
+  background-size: cover;
+  position: fixed;
+  width: 100%;
+  height: $header-height;
+  top:0;
+  left:0;
+  z-index: -1;
+}
+
+
+.jumbotron {
+  height: $header-height;
+  color: white;
+  text-shadow: #444 0 1px 1px;
+  background:transparent;
+  margin: 0;
+  padding-left: 70px; // pour eviter le menu
+  h1{
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 4em;
+  }
+  p{
+    font-size: 2em;
+  }
+}
