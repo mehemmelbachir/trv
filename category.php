@@ -16,8 +16,11 @@
 
 		<!-- section -->
 		<section>
-
-			<h1>What we are saying on normal categories...</h1>
+			<div class="container w500">
+				<h1>What we are saying on normal categories...</h1>	
+				
+			</div>
+			
 
 		</section>
 		<!-- /section -->

@@ -23,7 +23,7 @@
                 }
         });
 
-
+/*
 		// Creating countUp
 		var options = {
 		  useEasing : true, 
@@ -71,7 +71,7 @@
 
 		$("#next-section-btn").on("click", $.scrollify.next);
 		$("#prev-section-btn").on("click", $.scrollify.previous);
-
+*/
 	});
 	
 })(jQuery, this);

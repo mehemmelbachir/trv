@@ -1,8 +1,11 @@
-/* @import 'https://fonts.googleapis.com/css?family=Roboto+Condensed:700';*/
+@import 'https://fonts.googleapis.com/css?family=Roboto+Condensed:700';
 
 
 /* footer */
 .footer , .footer-index{
+	position: relative;
+	bottom: 0;
+	width: 100%;
 	font-family: 'Roboto Condensed', sans-serif;
 	font-weight: 700;
 	background-color: #e6e6e6;
@@ -13,6 +16,9 @@
 	padding-right: 30px;
 	p{
 		margin:0;
+		@media screen and (max-width: 400px){
+			font-size: .8em;
+		}
 	}
 }
 

@@ -11,6 +11,33 @@
 
 // Load any external files you have here
 
+
+/*
+* Filter the single_template with our custom function. 
+*/
+add_filter('single_template', 'my_single_template');
+
+/**
+*  Single template function which will choose our template
+*/
+function my_single_template($single){
+    global $wp_quer, $post;
+
+    /**
+    * Checks for single template by category
+    * Check by category slug and ID
+    */
+    foreach((array)get_the_category() as $cat) :
+
+    if(file_exists(SINGLE_PATH . '/single-cat-' . $cat->slug . '.php'))
+    return SINGLE_PATH . '/single-cat-' . $cat->slug . '.php';
+
+    elseif(file_exists(SINGLE_PATH . '/single-cat-' . $cat->term_id . '.php'))
+    return SINGLE_PATH . '/single-cat-' . $cat->term_id . '.php';
+
+    endforeach;
+}
+
 /*------------------------------------*\
 	Theme Support
 \*------------------------------------*/
@@ -92,6 +119,9 @@ function html5blank_header_scripts()
 {
     if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
 
+        /*wp_register_script('loading', get_template_directory_uri() . '/js/loading.js', array(), '1.0.0'); // Loading
+        wp_enqueue_script('loading'); // Enqueue it!
+*/
     	wp_register_script('conditionizr', get_template_directory_uri() . '/js/lib/conditionizr-4.3.0.min.js', array(), '4.3.0'); // Conditionizr
         wp_enqueue_script('conditionizr'); // Enqueue it!
 
@@ -113,6 +143,7 @@ function html5blank_header_scripts()
         wp_register_script('countUp', get_template_directory_uri() . '/js/bower_components/countUp.js/dist/countUp.js', array(), '1.0.0'); // CountUp
         wp_enqueue_script('countUp'); // Enqueue it!
 
+ 
     }
 }
 
@@ -436,7 +467,8 @@ function create_post_type_html5()
             'title',
             'editor',
             'excerpt',
-            'thumbnail'
+            'thumbnail',
+            'custom-fields'
         ), // Go to Dashboard Custom HTML5 Blank post for supports
         'can_export' => true, // Allows export in Tools > Export
         'taxonomies' => array(
@@ -462,4 +494,58 @@ function html5_shortcode_demo_2($atts, $content = null) // Demo Heading H2 short
     return '<h2>' . $content . '</h2>';
 }
 
+
+
+
+
+/**
+ * Generate breadcrumbs
+ * @author CodexWorld
+ * @authorURL www.codexworld.com
+ */
+function get_breadcrumb() {
+    $arrow = '<img src="' .get_template_directory_uri() . '/img/icons/arrow-right-01.png" class="next-arrow" />';
+    //echo $arrow;
+    //echo '<a href="'.home_url().'" rel="nofollow" title="Accueil">&#8757;</a>';
+    if (is_category() || is_single() && (get_post_type() != "jobpost")) {
+
+        the_category(' &bull; ');
+            if (is_single()) {
+                echo " &nbsp;&nbsp;" . $arrow . "&nbsp;&nbsp; ";
+                the_title();
+            }
+
+
+    } elseif (is_page()) {
+        //echo "&nbsp;&nbsp;" . $arrow . "&nbsp;&nbsp;";
+        echo the_title();
+    } elseif (is_search()) {
+        echo "&nbsp;&nbsp;" . $arrow . "&nbsp;&nbsp;Search Results for... ";
+        echo '"<em>';
+        echo the_search_query();
+        echo '</em>"';
+    }  elseif (get_post_type() == "jobpost") {
+        echo '<a href="'. get_post_type_archive_link( 'jobpost' ).'">Recrutement</a>';
+    //    echo "Recrutement";
+         if (is_single()){
+            echo "&nbsp;&nbsp;" . $arrow . "&nbsp;&nbsp;";
+            echo the_title();   
+         }
+         
+    }
+    
+}
+
+
+
+/**
+*Define a constant path to our single template folder. 
+*/
+define('SINGLE_PATH', TEMPLATEPATH . '/single');
+
+
 ?>
+
+
+
+

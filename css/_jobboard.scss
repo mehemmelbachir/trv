@@ -1,0 +1,30 @@
+.postuler{
+		color: #000;
+		text-transform: uppercase;
+		font-weight: 800;
+		font-size: 0.9em;
+		padding: 10px 20px;
+		margin: 20px;
+		border: dotted 1px #000;
+		background: rgba(250,250,250,.8);
+		transition: all .5s ease;
+		&:hover{
+			color: #AAA;
+			background: rgba(0,0,255,0.4);
+		}
+}
+
+.sjb-list-view{
+	background: #FFF;
+	&:hover{
+		background: #f6f6f6;
+	}
+}
+
+.sjb-wrap .sjb-lead{
+	margin: 20px 0px;
+}
+
+.sjb-wrap a:hover{
+	color: #FFF;
+}

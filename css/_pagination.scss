@@ -20,6 +20,10 @@ $element-text-color: #FFF;
 	transition : all .3s;
 	transform : rotateZ(45deg) translateY(-50%) translateX(0); 
 	transform-origin: 100% 100% 0%;
+	-webkit-animation: clin 1s ease-in-out infinite; /* Safari 4+ */
+    -moz-animation:    clin 1s ease-in-out infinite; /* Fx 5+ */
+    -o-animation:      clin 1s ease-in-out infinite; /* Opera 12+ */
+    animation:         clin 1s ease-in-out infinite;
 
 	*{
 		display: block;
@@ -38,6 +42,7 @@ $element-text-color: #FFF;
 
 	&:hover{
 		transform: rotateZ(0) translateY(-50%);
+		animation: none;
 		right: 0;
 		.pagination_nav{
 			opacity : .8;
@@ -105,3 +110,11 @@ $element-text-color: #FFF;
 }
 
 
+
+
+@keyframes clin {
+	0% {opacity : 1;}
+	50% {opacity : 0.2;}
+	100% {opacity : 0.9;}
+
+}

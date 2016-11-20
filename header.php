@@ -2,7 +2,7 @@
 <html <?php language_attributes(); ?> class="no-js">
 	<head>
 		<meta charset="<?php bloginfo('charset'); ?>">
-		<title><?php wp_title(''); ?><?php if(wp_title('', false)) { echo ' :'; } ?> <?php bloginfo('name'); ?></title>
+		<title><?php bloginfo('name'); ?> <?php if(wp_title('', false)) { echo ' | '; } ?> <?php wp_title(''); ?> </title>
 
 		<link href="//www.google-analytics.com" rel="dns-prefetch">
         <link href="<?php echo get_template_directory_uri(); ?>/img/icons/favicon.ico" rel="shortcut icon">
@@ -33,17 +33,16 @@
             tests: {}
         });
         </script>
-
-
-
-
-
-
 	</head>
-	<body <?php body_class(); ?>>
+
+
+	<!--
+	<div id="loading">this is loading</div>
+	-->
+
+	<body <?php body_class(); ?> style="">
 
 		<!-- Bootstrap Two -->
-	<!--	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script> -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
 
@@ -54,14 +53,67 @@
 			<header class="header clear" role="banner">
 
 					<?php if(!is_home()){  ?>
+
+								<?php 
+					  		    $cat_title = single_cat_title('',false); 
+					  		    $cat_description = category_description();
+					  		 	
+					  		    //$category_link
+					  			if(strlen($cat_title) == 0){
+					  				$cat_array = get_the_category();					  		
+					  				$cat_title = $cat_array[0]->name;
+					  				$cat_description = '';
+					  			};
+
+				  				if(strlen($cat_title) == 0 && get_post_type() == "jobpost"){
+				  					$cat_title = 'Recrutement';
+				  				}
+
+				  				if(is_page()){
+				  					$cat_title = get_the_title();
+				  					$cat_description = "";
+				  				}
+					  			
+					  			// If project add project thumbnail
+					  			if($cat_title == 'Projets & réalisations'){
+					  				echo '<h1>'.$cat_title.'</h1>';
+					  			}
+
+					  			$cat_id = get_cat_ID($cat_title);
+					  			$cat_link = get_category_link($cat_id);
+					  			$header_img = get_template_directory_uri() .'/img/'. $cat_title .'.jpg';
+					  			$cat_array = get_the_category();
+					  			if(($cat_array[0]->slug == 'projects') && is_single()){
+					  				if ( has_post_thumbnail() ) { 
+					  					$the_array = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );
+					  					$header_img = $the_array[0];
+										//echo '<h1> this is it: ' . $header_img . '</h1>';
+									} 
+					  				
+					  			}
+
+					  			?>	
+
+
 					<!-- logo -->
-					<div class="bg" style="background: url('<?php echo get_template_directory_uri(); ?>/img/header_01.jpg') no-repeat center center; background-size: cover;"></div>
-					<div class="jumbotron text-center pagination-centered" id="jumberton">					
+					<div class="bg" style="background: url('<?php echo $header_img; ?>') no-repeat center center; background-size: cover;"></div>
+					<div class="jumbotron text-center pagination-centered" id="jumberton">		
 						<div style="display: table; margin: 0 auto;">
-							<img src="<?php echo get_template_directory_uri();?>/img/logo_305x50_2.png" width="200px">
-					  	</div>		
-					  	<h1><?php single_cat_title(); ?></h1>
-					  	<?php echo category_description( $category_id ); ?>	
+							<img src="<?php echo get_template_directory_uri() . '/img/logo_305x50_2.png'; ?>" width="200px">
+					  	</div>
+
+					  	<div class="container">
+					  		<div>
+				  				<a href="<?php echo $cat_link; ?>" title="<?php echo $cat_title; ?>">
+				  					<h1 class="title"><?php echo $cat_title; ?></h1>
+				  				</a>
+							  	
+							  	<?php echo $cat_description; ?>			
+
+					  		</div>
+					  		
+					  	</div>
+					  	
 					</div>
 					<!-- /logo -->
 
@@ -73,12 +125,12 @@
 					<div id="myNav" class="overlay" isOpen="false">
 					    <!-- Overlay content -->
 					    <div class="overlay-content">
-					    	<?php //get_search_form(); ?>	
-
 					  	    <?php html5blank_nav(); ?>	
 					    </div>
 
+
 					</div>
+
 
 
 					<div class="topbar hidden">
@@ -87,13 +139,13 @@
 						<div id="first_line" class="row">
 							
 								<img 
-								src="<?php echo get_template_directory_uri();?>/img/logo_160px.png"
-								 alt="Travocovia logo"
-								 width="160px"
-								 style="float: right;">
+  								 	src="<?php echo get_template_directory_uri();?>/img/logo_160px.png"
+								 	alt="Travocovia logo"
+								 	width="160px"
+								 	style="float: right;">
 							
 							
-								<p><?php single_cat_title();?></p>
+								<p><?php get_breadcrumb(); //single_cat_title();?></p>
 													
 						</div>
 						<?php  }; ?>
@@ -120,9 +172,6 @@
 			</header>
 			<!-- /header -->
 
-
-
-		
 
 		<!-- Container -->
 		<div class="container-fluid">	
